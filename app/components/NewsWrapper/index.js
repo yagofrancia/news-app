@@ -5,12 +5,32 @@ import { connect } from 'react-redux';
 import { getNews } from '../../apiclient';
 import { setNewsData, setFilterBySource, setItemsToDisplay } from '../../actions';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core';
+// import withWidth from '@material-ui/core/withWidth';
+
+const useStyles = makeStyles(theme => ({
+    root: {
+        maxWidth: '70%',
+        margin: '0 auto',
+        [theme.breakpoints.down('sm')]: {
+            minWidth: '100%',
+            background: 'pink'
+        }
+    },
+    head: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
+}))
 
 const NewsWrapper = props => {
 
     const setActiveFilter = value => {
         props.setFilter(value);
     }
+
+    const classes = useStyles();
 
     useEffect(() => {
 
@@ -42,12 +62,19 @@ const NewsWrapper = props => {
     }
 
     return (
-        <div>
-            <SourceFilter
-                sources={props.sources}
-                active={props.active}
-                changeHandler={setActiveFilter}
-            />
+        <div className={classes.root}>
+            <div className={classes.head}>
+                <div>
+                    <h1>News</h1>
+                </div>
+                <div>
+                    <SourceFilter
+                        sources={props.sources}
+                        active={props.active}
+                        changeHandler={setActiveFilter}
+                    />
+                </div>
+            </div>
             {
                 filteredData.map((n, i) => <Card key={i} data={n} />)
             }

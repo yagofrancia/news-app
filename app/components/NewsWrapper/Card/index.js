@@ -32,7 +32,7 @@ const Card = props => {
                 </Grid>
                 <Grid item xs={12}>
                     <div className={classes.secContainer}>
-                        <span>{new Date(props.data.date).toLocaleDateString()}</span>
+                        <span>{new Date(props.data.publishedAt).toLocaleDateString()}</span>
                         <span className={classes.sourceTag}>{props.data.source.name}</span>
                     </div>
                 </Grid>
