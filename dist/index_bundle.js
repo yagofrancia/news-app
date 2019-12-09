@@ -149,6 +149,7 @@ var SET_ITEMS_TO_DISPLAY = 'SET_ITEMS_TO_DISPLAY';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNews", function() { return getNews; });
+/* eslint-disable */
 var getNews = function getNews() {
   var baseUrl, key, country, url, res, data;
   return regeneratorRuntime.async(function getNews$(_context) {
@@ -179,6 +180,7 @@ var getNews = function getNews() {
     }
   });
 };
+/* eslint-enable */
 
 /***/ }),
 
@@ -224,17 +226,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Grid */ "./node_modules/@material-ui/core/esm/Grid/index.js");
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["makeStyles"])({
   root: {
+    padding: '10px 0 0 0',
     '&:hover': {
-      background: '#dedede'
+      background: '#dedede',
+      borderRadius: '8px'
     }
   },
   secContainer: {
-    display: 'flex'
+    display: 'flex',
+    marginBottom: '10px',
+    marginLeft: '5px'
   },
   sourceTag: {
     background: 'grey',
@@ -242,28 +251,66 @@ var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_2__["ma
     marginLeft: '10px',
     borderRadius: '15px',
     padding: '0px 8px'
+  },
+  ruler: {
+    marginBottom: '0px',
+    color: '#dbdbdb'
+  },
+  anchor: {
+    textDecoration: 'inherit',
+    color: 'inherit'
+  },
+  titleContainer: {
+    marginBottom: '15px',
+    marginLeft: '5px'
+  },
+  title: {
+    fontSize: '23px',
+    fontWeight: 'bold'
   }
 });
 
 var Card = function Card(props) {
   var classes = useStyles();
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  var data = props.data;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: data.url,
+    className: classes.anchor,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.root
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_1__["default"], {
     container: true
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_1__["default"], {
     item: true,
     xs: 12
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.data.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_1__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.titleContainer
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: classes.title
+  }, data.title.split(' - ')[0]))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Grid__WEBPACK_IMPORTED_MODULE_1__["default"], {
     item: true,
     xs: 12
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.secContainer
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, new Date(props.data.publishedAt).toLocaleDateString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, new Date(data.publishedAt).toLocaleDateString()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: classes.sourceTag
-  }, props.data.source.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null));
+  }, data.source.name)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+    className: classes.ruler
+  })));
 };
 
+Card.propTypes = {
+  data: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.shape({
+    url: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    title: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    publishedAt: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string,
+    source: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.shape({
+      name: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.string
+    })
+  }).isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (Card);
 
 /***/ }),
@@ -282,17 +329,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_Select__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/Select */ "./node_modules/@material-ui/core/esm/Select/index.js");
 /* harmony import */ var _material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/FormControl */ "./node_modules/@material-ui/core/esm/FormControl/index.js");
 /* harmony import */ var _material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/InputLabel */ "./node_modules/@material-ui/core/esm/InputLabel/index.js");
-/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _material_ui_core_OutlinedInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core/OutlinedInput */ "./node_modules/@material-ui/core/esm/OutlinedInput/index.js");
+/* harmony import */ var _material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/MenuItem */ "./node_modules/@material-ui/core/esm/MenuItem/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 
 
 
 
 
 
-var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["makeStyles"])({
+
+
+var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_7__["makeStyles"])({
   formControl: {
     minWidth: 200
+  },
+  root: {
+    '&:hover:not($error) $notchedOutline': {
+      borderColor: '#5c5c5c',
+      borderWidth: '3px'
+    },
+    '&$focused:not($error) $notchedOutline': {
+      borderColor: 'grey',
+      // '#d43939',
+      borderWidth: 2
+    }
+  },
+  focused: {},
+  error: {},
+  notchedOutline: {
+    borderColor: '#5c5c5c',
+    borderWidth: '2px'
+  },
+  labelRoot: {
+    '&$focused:not($error)': {
+      color: '#d43939'
+    }
   }
 });
 
@@ -302,22 +376,45 @@ var SourceFilter = function SourceFilter(_ref) {
       changeHandler = _ref.changeHandler;
   var classes = useStyles();
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_FormControl__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    className: classes.formControl
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_3__["default"], null, "Filter By Source"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    className: classes.formControl,
+    variant: "outlined"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_InputLabel__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    classes: {
+      root: classes.labelRoot,
+      focused: classes.focused,
+      error: classes.error
+    }
+  }, "Filter By Source"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Select__WEBPACK_IMPORTED_MODULE_1__["default"], {
     value: active,
+    variant: "outlined",
     onChange: function onChange(e) {
       changeHandler(e.target.value);
-    }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    },
+    input: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_OutlinedInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      labelWidth: 115,
+      classes: {
+        root: classes.root,
+        notchedOutline: classes.notchedOutline,
+        focused: classes.focused,
+        input: classes.input,
+        error: classes.error
+      }
+    })
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
     value: ""
-  }, "No Filters"), sources.map(function (src, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      key: i,
+  }, "No Filters"), sources.map(function (src) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_MenuItem__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      key: src,
       value: src
     }, src);
   })));
 };
 
+SourceFilter.propTypes = {
+  sources: prop_types__WEBPACK_IMPORTED_MODULE_6___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_6___default.a.string).isRequired,
+  active: prop_types__WEBPACK_IMPORTED_MODULE_6___default.a.string.isRequired,
+  changeHandler: prop_types__WEBPACK_IMPORTED_MODULE_6___default.a.func.isRequired
+};
 /* harmony default export */ __webpack_exports__["default"] = (SourceFilter);
 
 /***/ }),
@@ -326,21 +423,23 @@ var SourceFilter = function SourceFilter(_ref) {
 /*!*********************************************!*\
   !*** ./app/components/NewsWrapper/index.js ***!
   \*********************************************/
-/*! exports provided: default */
+/*! exports provided: NewsWrapper, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NewsWrapper", function() { return NewsWrapper; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Card */ "./app/components/NewsWrapper/Card/index.js");
-/* harmony import */ var _SourceFilter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SourceFilter */ "./app/components/NewsWrapper/SourceFilter/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _apiclient__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../apiclient */ "./app/apiclient/index.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions */ "./app/actions/index.js");
-/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _material_ui_core_withWidth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core/withWidth */ "./node_modules/@material-ui/core/esm/withWidth/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/core/Button */ "./node_modules/@material-ui/core/esm/Button/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Card */ "./app/components/NewsWrapper/Card/index.js");
+/* harmony import */ var _SourceFilter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./SourceFilter */ "./app/components/NewsWrapper/SourceFilter/index.js");
+/* harmony import */ var _apiclient__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../apiclient */ "./app/apiclient/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../actions */ "./app/actions/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -348,6 +447,14 @@ function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread n
 function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -359,47 +466,78 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // import withWidth from '@material-ui/core/withWidth';
 
-var useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["makeStyles"])(function (theme) {
+var useStyles = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_4__["makeStyles"])(function (theme) {
   return {
     root: _defineProperty({
-      maxWidth: '70%',
+      maxWidth: '60%',
       margin: '0 auto'
-    }, theme.breakpoints.down('md'), {
-      minWidth: '100%',
-      background: 'pink'
-    })
+    }, theme.breakpoints.down('sm'), {
+      minWidth: '100%'
+    }),
+    head: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    title: {
+      color: '#d43939'
+    },
+    button: {
+      color: '#d43939',
+      borderColor: '#d43939',
+      borderWidth: '3px',
+      borderRadius: '0',
+      marginTop: '10px',
+      '&:hover': {
+        borderWidth: '4px',
+        borderColor: '#d43939'
+      }
+    }
   };
 });
-
 var NewsWrapper = function NewsWrapper(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      loading = _useState2[0],
+      setLoading = _useState2[1];
+
+  var setDataToStore = props.setDataToStore,
+      setFilter = props.setFilter,
+      addDisplayedItems = props.addDisplayedItems,
+      active = props.active,
+      data = props.data,
+      itemsToDisplay = props.itemsToDisplay,
+      sources = props.sources;
+
   var setActiveFilter = function setActiveFilter(value) {
-    props.setFilter(value);
+    setFilter(value);
   };
 
-  console.log(props.width);
   var classes = useStyles();
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     function fetchData() {
-      var data;
+      var newsData;
       return regeneratorRuntime.async(function fetchData$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return regeneratorRuntime.awrap(Object(_apiclient__WEBPACK_IMPORTED_MODULE_4__["getNews"])());
+              setLoading(true);
+              _context.next = 3;
+              return regeneratorRuntime.awrap(Object(_apiclient__WEBPACK_IMPORTED_MODULE_7__["getNews"])());
 
-            case 2:
-              data = _context.sent;
-              console.log(data);
-              props.setDataToStore({
-                data: data,
-                sources: _toConsumableArray(new Set(data.map(function (d) {
+            case 3:
+              newsData = _context.sent;
+              // console.log(data);
+              setDataToStore({
+                data: newsData,
+                sources: _toConsumableArray(new Set(newsData.map(function (d) {
                   return d.source.name;
                 })))
               });
+              setLoading(false);
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -409,31 +547,43 @@ var NewsWrapper = function NewsWrapper(props) {
 
     fetchData();
   }, []);
-  var dataBySource = props.active ? props.data.filter(function (nw) {
-    return nw.source.name === props.active;
-  }) : props.data;
-  var filteredData = dataBySource.slice(0, props.itemsToDisplay);
+  var dataBySource = active ? data.filter(function (nw) {
+    return nw.source.name === active;
+  }) : data;
+  var filteredData = dataBySource.slice(0, itemsToDisplay);
 
   var showMore = function showMore() {
-    var itemsToAdd = props.itemsToDisplay + 5 < props.data.length ? 5 : props.data.length - props.itemsToDisplay;
-    props.addDisplayedItems(props.itemsToDisplay + itemsToAdd);
+    var itemsToAdd = itemsToDisplay + 5 < data.length ? 5 : data.length - itemsToDisplay;
+    addDisplayedItems(itemsToDisplay + itemsToAdd);
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return loading ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "loader"
+  }, "Loading...") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: classes.root
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SourceFilter__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    sources: props.sources,
-    active: props.active,
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.head
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: classes.title
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: {
+      borderBottom: '5px solid #d43939',
+      marginLeft: '5px'
+    }
+  }, "News")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SourceFilter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    sources: sources,
+    active: active,
     changeHandler: setActiveFilter
-  }), filteredData.map(function (n, i) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      key: i,
+  }))), filteredData.map(function (n) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Card__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      key: n,
       data: n
     });
-  }), props.itemsToDisplay < dataBySource.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    variant: "contained",
+  }), itemsToDisplay < dataBySource.length && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    variant: "outlined",
     color: "primary",
-    onClick: showMore
+    onClick: showMore,
+    className: classes.button
   }, "Show More"));
 };
 
@@ -449,19 +599,27 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setDataToStore: function setDataToStore(data) {
-      return dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_5__["setNewsData"])(data));
+      return dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_8__["setNewsData"])(data));
     },
     setFilter: function setFilter(data) {
-      return dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_5__["setFilterBySource"])(data));
+      return dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_8__["setFilterBySource"])(data));
     },
     addDisplayedItems: function addDisplayedItems(data) {
-      return dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_5__["setItemsToDisplay"])(data));
+      return dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_8__["setItemsToDisplay"])(data));
     }
   };
 };
 
-var enhanced = Object(_material_ui_core_withWidth__WEBPACK_IMPORTED_MODULE_8__["default"])()(NewsWrapper);
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(enhanced));
+NewsWrapper.propTypes = {
+  setDataToStore: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  setFilter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  addDisplayedItems: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  active: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  data: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.object).isRequired,
+  itemsToDisplay: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string.isRequired,
+  sources: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.arrayOf(prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string).isRequired
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(NewsWrapper));
 
 /***/ }),
 
@@ -38703,8 +38861,10 @@ var e=function(e){return parseFloat(e)};/* harmony default export */ __webpack_e
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Imports
+exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap);", ""]);
 // Module
-exports.push([module.i, "body {\r\n    color:red\r\n}", ""]);
+exports.push([module.i, "body {\r\n    font-family: 'Roboto','Helvetica','Arial', sans-serif;\r\n    color:#2e2e2e;\r\n    background:#ededed;\r\n    /* background: black; */\r\n}\r\n\r\n.loader,\r\n.loader:after {\r\n  border-radius: 50%;\r\n  width: 10em;\r\n  height: 10em;\r\n}\r\n.loader {\r\n  margin:200px auto;\r\n  font-size: 10px;\r\n  position: relative;\r\n  text-indent: -9999em;\r\n  border-top: 1.1em solid rgba(255, 255, 255, 0.2);\r\n  border-right: 1.1em solid rgba(255, 255, 255, 0.2);\r\n  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);\r\n  border-left: 1.1em solid #d43939;\r\n  -webkit-transform: translateZ(0);\r\n  -ms-transform: translateZ(0);\r\n  transform: translateZ(0);\r\n  -webkit-animation: load8 1.1s infinite linear;\r\n  animation: load8 1.1s infinite linear;\r\n}\r\n@-webkit-keyframes load8 {\r\n  0% {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n  100% {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}\r\n@keyframes load8 {\r\n  0% {\r\n    -webkit-transform: rotate(0deg);\r\n    transform: rotate(0deg);\r\n  }\r\n  100% {\r\n    -webkit-transform: rotate(360deg);\r\n    transform: rotate(360deg);\r\n  }\r\n}", ""]);
 
 
 /***/ }),

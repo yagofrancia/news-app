@@ -1,10 +1,8 @@
 import React from 'react';
 import NewsWrapper from './NewsWrapper';
-import '../estilo.css'
+import '../estilo.css';
 import 'regenerator-runtime/runtime';
 
-const App = () => {
-    return <NewsWrapper />
-}
+const App = () => <NewsWrapper />;
 
 export default App;
