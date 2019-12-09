@@ -8,7 +8,7 @@ const init = {
 };
 
 export default (state = init, action) => {
-  console.log(action.type, action.payload);
+  // console.log(action.type, action.payload);
   switch (action.type) {
     case SET_NEWS_DATA:
       return {
