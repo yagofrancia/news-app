@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack --env=dev",
     "prod": "webpack --env=prod",
-    "dev-server": "webpack-dev-server --inline --hot"
+    "dev-server": "webpack-dev-server --inline --hot",
+    "test": "jest --watch"
   },
   "author": "",
   "license": "ISC",
@@ -24,10 +25,19 @@
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
+    "jest-enzyme": "^7.1.2",
     "style-loader": "^1.0.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./app/setupTests.js"
+    ]
   }
 }

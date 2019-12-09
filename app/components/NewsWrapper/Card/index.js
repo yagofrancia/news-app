@@ -4,12 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
+        padding:'10px 0 0 0',
         '&:hover': {
-            background: '#dedede'
-        }
+            background: '#dedede',
+            borderRadius: '8px'
+        },
     },
     secContainer: {
-        display: 'flex'
+        display: 'flex',
+        marginBottom:'10px',
+        marginLeft:'5px'
     },
     sourceTag: {
         background: 'grey',
@@ -17,6 +21,22 @@ const useStyles = makeStyles({
         marginLeft: '10px',
         borderRadius: '15px',
         padding: '0px 8px'
+    },
+    ruler: {
+        marginBottom: '0px',
+        color:'#dbdbdb'
+    },
+    anchor: {
+        textDecoration: 'inherit',
+        color: 'inherit'
+    },
+    titleContainer: {
+        marginBottom: '15px',
+        marginLeft:'5px'
+    },
+    title: {
+        fontSize: '23px',
+        fontWeight: 'bold'
     }
 })
 
@@ -25,20 +45,24 @@ const Card = props => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-            <Grid container>
-                <Grid item xs={12}>
-                    <h1>{props.data.title}</h1>
+        <a href={props.data.url} className={classes.anchor} target="_blank">
+            <div className={classes.root}>
+                <Grid container>
+                    <Grid item xs={12}>
+                        <div className={classes.titleContainer}>
+                            <span className={classes.title}>{props.data.title.split(' - ')[0]}</span>
+                        </div>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <div className={classes.secContainer}>
+                            <span>{new Date(props.data.publishedAt).toLocaleDateString()}</span>
+                            <span className={classes.sourceTag}>{props.data.source.name}</span>
+                        </div>
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    <div className={classes.secContainer}>
-                        <span>{new Date(props.data.publishedAt).toLocaleDateString()}</span>
-                        <span className={classes.sourceTag}>{props.data.source.name}</span>
-                    </div>
-                </Grid>
-            </Grid>
-            <hr />
-        </div>
+                <hr className={classes.ruler} />
+            </div>
+        </a>
     )
 }
 

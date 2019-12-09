@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 import SourceFilter from './SourceFilter'
 import { connect } from 'react-redux';
 import { getNews } from '../../apiclient';
 import { setNewsData, setFilterBySource, setItemsToDisplay } from '../../actions';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 // import withWidth from '@material-ui/core/withWidth';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: '70%',
+        maxWidth: '60%',
         margin: '0 auto',
         [theme.breakpoints.down('sm')]: {
             minWidth: '100%',
@@ -21,10 +20,26 @@ const useStyles = makeStyles(theme => ({
     head: {
         display: 'flex',
         justifyContent: 'space-between'
+    },
+    title: {
+        color: '#d43939'
+    },
+    button: {
+        color: '#d43939',
+        borderColor: '#d43939',
+        borderWidth: '3px',
+        borderRadius: '0',
+        marginTop: '10px',
+        '&:hover': {
+            borderWidth: '4px',
+            borderColor: '#d43939'
+        }
     }
 }))
 
 const NewsWrapper = props => {
+
+    const [loading, setLoading] = useState(false);
 
     const setActiveFilter = value => {
         props.setFilter(value);
@@ -35,12 +50,14 @@ const NewsWrapper = props => {
     useEffect(() => {
 
         async function fetchData() {
+            setLoading(true);
             let data = await getNews();
             console.log(data)
             props.setDataToStore({
                 data,
                 sources: [...new Set(data.map(d => d.source.name))]
             });
+            setLoading(false)
         }
         fetchData();
 
@@ -61,34 +78,37 @@ const NewsWrapper = props => {
         props.addDisplayedItems(props.itemsToDisplay + itemsToAdd)
     }
 
-    return (
-        <div className={classes.root}>
-            <div className={classes.head}>
-                <div>
-                    <h1>News</h1>
+    return loading
+        ? <div className="loader">Loading...</div>
+        : (
+            <div className={classes.root}>
+                <div className={classes.head}>
+                    <div className={classes.title}>
+                        <h1 style={{ borderBottom: '5px solid #d43939', marginLeft: '5px' }}>News</h1>
+                    </div>
+                    <div>
+                        <SourceFilter
+                            sources={props.sources}
+                            active={props.active}
+                            changeHandler={setActiveFilter}
+                        />
+                    </div>
                 </div>
-                <div>
-                    <SourceFilter
-                        sources={props.sources}
-                        active={props.active}
-                        changeHandler={setActiveFilter}
-                    />
-                </div>
-            </div>
-            {
-                filteredData.map((n, i) => <Card key={i} data={n} />)
-            }
-            {
-                (props.itemsToDisplay < dataBySource.length) && <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={showMore}
-                >
-                    Show More
+                {
+                    filteredData.map((n, i) => <Card key={i} data={n} />)
+                }
+                {
+                    (props.itemsToDisplay < dataBySource.length) && <Button
+                        variant="outlined"
+                        color="primary"
+                        onClick={showMore}
+                        className={classes.button}
+                    >
+                        Show More
                 </Button>
-            }
-        </div >
-    )
+                }
+            </div >
+        )
 
 }
 
