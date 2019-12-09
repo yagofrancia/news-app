@@ -27,13 +27,9 @@ const useStyles = makeStyles({
         borderWidth: '2px'
     },
     labelRoot: {
-        // color: 'white',
         '&$focused:not($error)': {
             color: '#d43939'
-        },
-        // '&$error': {
-        //     color: 'red'
-        // }
+        }
     }
 })
 
