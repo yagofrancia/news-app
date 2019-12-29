@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core';
+import UAParser from 'ua-parser-js';
 import Card from './Card';
 import SourceFilter from './SourceFilter';
 import { getNews } from '../../apiclient';
 import { setNewsData, setFilterBySource, setItemsToDisplay } from '../../actions';
 // import withWidth from '@material-ui/core/withWidth';
+
+const agentParser = new UAParser();
+const device = agentParser.getDevice().type || 'pc';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,7 +19,10 @@ const useStyles = makeStyles(theme => ({
     margin: '0 auto',
     [theme.breakpoints.down('sm')]: {
       minWidth: '100%'
-    }
+    },
+    minWidth: device !== 'pc'
+      ? '100%'
+      : undefined
   },
   head: {
     display: 'flex',
